@@ -1,0 +1,32 @@
+{
+  "name": "sokoban-api_simon_chabrol_rainteau_faure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.mjs",
+    "init-db": "docker run --name mongo-sokoban -p 27017:27017 -d mongo",
+    "start-db": "docker start mongo-sokoban",
+    "stop-db": "docker stop mongo-sokoban"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Theorique/Sokoban-API_SIMON_CHABROL_RAINTEAU_FAURE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Theorique/Sokoban-API_SIMON_CHABROL_RAINTEAU_FAURE/issues"
+  },
+  "homepage": "https://github.com/Theorique/Sokoban-API_SIMON_CHABROL_RAINTEAU_FAURE#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.2",
+    "mongoose": "^7.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
