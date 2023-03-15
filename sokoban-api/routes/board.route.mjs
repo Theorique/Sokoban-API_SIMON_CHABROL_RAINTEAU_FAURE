@@ -7,6 +7,10 @@ export const boardRoutes = (controller) => {
     controller.showList(req, res);
   });
 
+  router.get("/:name", (req, res) => {
+    controller.getBoardByName(req, res);
+  });
+
   router.post("/add", (req, res) => {
     console.log(req.query)
     controller.createBoard(req, res);

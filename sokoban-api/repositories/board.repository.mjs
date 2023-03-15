@@ -18,6 +18,28 @@ export class BoardRepository {
     });
   }
 
+  async getByName(name) {
+    let board = await Board.findOne({board_id:name}).exec();
+    let rows = await Rows.find({board_id:name}).exec();
+    rows.sort((a, b) => a.row - b.row);
+    let boardToReturn = this.createReturnedBoard(board, rows);
+    return boardToReturn;
+  }
+
+  createReturnedBoard(board, rows) {
+    let boardToReturn = {};
+    boardToReturn.board_id = board.board_id;
+    boardToReturn.name = board.name;
+    boardToReturn.nbRows = board.rows;
+    boardToReturn.nbCols = board.cols;
+    boardToReturn.text = "";
+    for(let row of rows) {
+      boardToReturn.text += row.description+"\n"
+    }
+    boardToReturn.text = boardToReturn.text.substring(0,boardToReturn.text.length-2);
+    return boardToReturn;
+  }
+
   async create(boardId, name, nbRows, nbCols, rows) {
     try {
       let board = await Board.create({
