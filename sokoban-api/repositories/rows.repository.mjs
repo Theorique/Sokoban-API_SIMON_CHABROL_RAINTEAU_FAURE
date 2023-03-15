@@ -6,6 +6,7 @@ export class RowsRepository {
       Rows.find({})
         .exec()
         .then((rows, err) => {
+          rows.sort((a, b) => a.row - b.row)
           if (err) {
             reject(err);
           } else {

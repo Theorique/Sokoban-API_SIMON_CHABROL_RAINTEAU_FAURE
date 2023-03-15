@@ -18,18 +18,19 @@ export class BoardController {
       });
   }
 
-  createBoard(req, res) {
-    console.log("createBoard", req.query);
+  async createBoard(req, res) {
     const { boardId, name, nbRows, nbCols, rows } = req.query;
-    console.log("rows", rows[0])
-    this.repository
-      .create(boardId, name, nbRows, nbCols, rows)
-      .then((board) => {
-        res.send({ code: 200, board });
-      })
-      .catch((err) => {
-        res.sendStatus(500);
-      });
+    let result = await this.repository.create(
+      boardId,
+      name,
+      nbRows,
+      nbCols,
+      rows
+    );
+    if (result != null) {
+      res.send({ code: 200, result });
+    } else {
+      res.sendStatus(500);
+    }
   }
-
 }

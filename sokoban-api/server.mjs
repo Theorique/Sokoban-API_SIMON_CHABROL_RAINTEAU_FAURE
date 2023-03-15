@@ -39,7 +39,7 @@ const rowsRepository = new RowsRepository();
 const rowsController = new RowsController(rowsRepository);
 
 app.use('/', defaultRoutes(null));
-app.use('/board', boardRoutes(boardController));
+app.use('/boards', boardRoutes(boardController));
 app.use('/rows', rowsRoutes(rowsController));
 
 mongoose.set("strictQuery", false);
