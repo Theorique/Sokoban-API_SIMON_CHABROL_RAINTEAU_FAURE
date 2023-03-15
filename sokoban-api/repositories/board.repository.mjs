@@ -22,16 +22,21 @@ export class BoardRepository {
     let board = await Board.findOne({board_id:name}).exec();
     let rows = await Rows.find({board_id:name}).exec();
     rows.sort((a, b) => a.row - b.row);
-    let boardToReturn = this.createReturnedBoard(board, rows);
+    let boardToReturn = this.createReturnedBoardWithRows(board, rows);
     return boardToReturn;
   }
 
-  createReturnedBoard(board, rows) {
+  createReturnedBoard(board) {
     let boardToReturn = {};
     boardToReturn.board_id = board.board_id;
     boardToReturn.name = board.name;
     boardToReturn.nbRows = board.rows;
     boardToReturn.nbCols = board.cols;
+    return boardToReturn;
+  }
+
+  createReturnedBoardWithRows(board, rows) {
+    let boardToReturn = this.createReturnedBoard(board);
     boardToReturn.text = "";
     for(let row of rows) {
       boardToReturn.text += row.description+"\n"
