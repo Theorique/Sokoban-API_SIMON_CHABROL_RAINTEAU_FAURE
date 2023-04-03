@@ -20,3 +20,21 @@ Paramètres nécessaires :
 - nbRows : Nombre de lignes;
 - nbCols : Nombre de colonnes;
 - rows : Tableau de String contenant les lignes du tableaux (ex : ["##########","#x.x#....#","#...CC.P.#","#........#","#########"]) 
+
+## Pour utiliser l'API en local
+
+Pré requis :
+- Avoir Docker
+- Avoir node d'installé (Version de node utilisé dans le projet : v18.12.1)
+
+Après avoir cloné le dépot : 
+- Lancer Docker sur votre ordinateur si vous êtes sur windows,
+- Lancer la commande suivante :
+```js
+npm run init-db
+```
+Elle va créer le docker qui va contenir la base de données
+/!\ si la base de donnée est déjà crééé il faut utiliser cette commande :
+```js
+npm run start-db
+```

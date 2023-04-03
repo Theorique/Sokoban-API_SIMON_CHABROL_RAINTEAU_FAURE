@@ -6,7 +6,6 @@ export class BoardController {
     this.repository
       .getAll().then((boards) => {
         if(boards.length == 0) {
-          console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
           this.initBoard();
         }
       })
