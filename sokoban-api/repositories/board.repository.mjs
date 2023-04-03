@@ -2,9 +2,10 @@ import { Board } from "../config/board.config.db.mjs";
 import { Rows } from "../config/rows.config.db.mjs";
 
 export class BoardRepository {
+  /**
+   * Retourne la liste de tout les tableaux
+   */
   getAll() {
-    /* Board.deleteMany({}).exec();
-    Rows.deleteMany({}).exec(); */
     return new Promise((resolve, reject) => {
       Board.find({})
         .exec()
@@ -18,14 +19,26 @@ export class BoardRepository {
     });
   }
 
-  async getByName(name) {
-    let board = await Board.findOne({board_id:name}).exec();
-    let rows = await Rows.find({board_id:name}).exec();
+  /**
+   * Retourne le tableau possedant le board_id recherché
+   * @param {String} boardId Id recherché
+   * @returns 
+   */
+  async getByName(boardId) {
+    let board = await Board.findOne({board_id:boardId}).exec();
+    if(board == null)
+      return null;
+    let rows = await Rows.find({board_id:boardId}).exec();
     rows.sort((a, b) => a.row - b.row);
-    let boardToReturn = this.createReturnedBoardWithRows(board, rows);
-    return boardToReturn;
+    let boardWithRows = this.createReturnedBoardWithRows(board, rows);
+    return boardWithRows;
   }
 
+  /**
+   * Permet de retourner un objet tableau avec les attribut de base
+   * @param {*} board attributs du tableau à créer
+   * @returns le tableau créé
+   */
   createReturnedBoard(board) {
     let boardToReturn = {};
     boardToReturn.board_id = board.board_id;
@@ -35,6 +48,12 @@ export class BoardRepository {
     return boardToReturn;
   }
 
+  /**
+   * Permet de retourner un objet tableau avec les attribut de base et ses lignes
+   * @param {*} board attributs du tableau à créer
+   * @param {*} rows lignes du tableau à créer
+   * @returns le tableau créé
+   */
   createReturnedBoardWithRows(board, rows) {
     let boardToReturn = this.createReturnedBoard(board);
     boardToReturn.text = "";
@@ -45,6 +64,15 @@ export class BoardRepository {
     return boardToReturn;
   }
 
+  /**
+   * Permet d'insérer un tableau dans la base de données 
+   * @param {String} boardId Identifaint du tableau 
+   * @param {String} name Nom du tableau
+   * @param {Integer} nbRows Nombre de lignes du tableau
+   * @param {Integer} nbCols Nombre de colonnes du tableau
+   * @param {String[]} rows Descriptif des lignes du tableau
+   * @returns L'objet créé
+   */
   async create(boardId, name, nbRows, nbCols, rows) {
     try {
       let board = await Board.create({

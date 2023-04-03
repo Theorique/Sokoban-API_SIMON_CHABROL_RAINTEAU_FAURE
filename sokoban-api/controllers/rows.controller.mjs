@@ -18,8 +18,4 @@ export class RowsController {
           res.sendStatus(500);
         });
     }
-
-    getBoardInfo(board) {
-
-    }
 }
