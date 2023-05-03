@@ -13,11 +13,11 @@ import { RowsController } from "./controllers/rows.controller.mjs";
 
 import { defaultRoutes } from './routes/default-route.mjs';
 
-const hostname = 'localhost';
+const hostname = '127.0.0.1';
 const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:3000'
+  origin: '*'
 }));
 app.engine("hbs", engine({ extname: ".hbs" }));
 app.set("view engine", "hbs");
