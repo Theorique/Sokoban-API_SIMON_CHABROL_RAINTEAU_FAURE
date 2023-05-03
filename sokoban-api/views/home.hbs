@@ -1,3 +1,28 @@
 <div>
-    <h3>aled la</h3>
+  <h3>Utilisation de l'API</h3>
+  <div>
+    <u><b>Listes des éléments</b></u>
+    <p>Exemple de route :
+      <a href="http://localhost:3001/boards">http://localhost:3001/boards</a><br
+      />Cette route permet de liste les tableaux (sans leurs lignes) Il existe
+      aussi la route rows</p>
+    <u><b>Récupération d'un tableau</b></u>
+    <p>Exemple de route :
+      <a
+        href="http://localhost:3001/boards/simple"
+      >http://localhost:3001/boards/simple</a><br />Cette route permet de
+      récuérer les infos du tableau avec le board_id = "simple" informations
+      récupérées : { board_id, name, nbRows, nbCols, text:(description des
+      lignes du tableau)}</p>
+    <u><b>Création d'élément</b></u>
+    <p>Paramètres nécessaires :</p>
+    <ul>
+      <li>boardId : Id du tableau (ex:'simple')</li>
+      <li>name : Nom du tableau (ex:'A Simple Board')</li>
+      <li>nbRows : Nombre de lignes</li>
+      <li>nbCols : Nombre de colonnes</li>
+      <li>rows : Tableau de String contenant les lignes du tableaux (ex :
+        ["##########","#x.x#....#","#...CC.P.#","#........#","#########"])</li>
+    </ul>
+  </div>
 </div>
