@@ -14,6 +14,9 @@ informations récupérées :
 { board_id, name, nbRows, nbCols, text:(description des lignes du tableau)}
 
 #### Création d'élément
+
+route : /board/add (en post)
+
 Paramètres nécessaires :
 - boardId : Id du tableau (ex:'simple');
 - name : Nom du tableau (ex:'A Simple Board');
