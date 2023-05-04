@@ -15,7 +15,7 @@ informations récupérées :
 
 #### Création d'élément
 
-route : /board/add (en post)
+route : /boards/add (en post)
 
 Paramètres nécessaires :
 - boardId : Id du tableau (ex:'simple');
