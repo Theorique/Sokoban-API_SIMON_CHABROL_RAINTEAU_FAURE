@@ -5,7 +5,7 @@ export class BoardController {
     this.repository = repository;
     this.repository
       .getAll().then((boards) => {
-        if(boards.length == 0) {
+        if(boards.length === 0) {
           this.initBoard();
         }
       })
@@ -67,7 +67,7 @@ export class BoardController {
       .then((boards) => {
         res.json(boards);
       })
-      .catch((err) => {
+      .catch(() => {
         res.sendStatus(500);
       });
   }
@@ -106,5 +106,13 @@ export class BoardController {
     } else {
       res.sendStatus(500);
     }
+  }
+
+  async deleteBoard(req, res) {
+    let boardId = req.params.boardId;
+    if (await this.repository.deleteBoard(boardId))
+      res.sendStatus(200);
+    else
+      res.sendStatus(500);
   }
 }

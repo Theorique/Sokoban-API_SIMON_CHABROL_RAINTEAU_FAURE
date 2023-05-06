@@ -30,8 +30,7 @@ export class BoardRepository {
       return null;
     let rows = await Rows.find({board_id:boardId}).exec();
     rows.sort((a, b) => a.row - b.row);
-    let boardWithRows = this.createReturnedBoardWithRows(board, rows);
-    return boardWithRows;
+    return this.createReturnedBoardWithRows(board, rows);
   }
 
   /**
@@ -68,8 +67,8 @@ export class BoardRepository {
    * Permet d'insérer un tableau dans la base de données 
    * @param {String} boardId Identifaint du tableau 
    * @param {String} name Nom du tableau
-   * @param {Integer} nbRows Nombre de lignes du tableau
-   * @param {Integer} nbCols Nombre de colonnes du tableau
+   * @param {int} nbRows Nombre de lignes du tableau
+   * @param {int} nbCols Nombre de colonnes du tableau
    * @param {String[]} rows Descriptif des lignes du tableau
    * @returns L'objet créé
    */
@@ -93,6 +92,18 @@ export class BoardRepository {
       return board.toObject();
     } catch (err) {
       return null;
+    }
+  }
+
+  async deleteBoard(boardId) {
+    try {
+      let rowsResults = await Rows.deleteMany({board_id: boardId});
+      console.log("rowsResults", rowsResults.deletedCount);
+      let boardResults = await Board.deleteOne({board_id: boardId});
+      console.log("boardResults", boardResults.deletedCount);
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 }

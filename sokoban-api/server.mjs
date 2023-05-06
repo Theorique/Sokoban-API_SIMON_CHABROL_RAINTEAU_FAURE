@@ -42,8 +42,10 @@ app.use('/', defaultRoutes(null));
 app.use('/boards', boardRoutes(boardController));
 app.use('/rows', rowsRoutes(rowsController));
 
+app.delete('/boards', boardRoutes(boardController));
+
 mongoose.set("strictQuery", false);
-mongoose.connect("mongodb://localhost:27017/sokoban").catch(error => handleError(error));;
+mongoose.connect("mongodb://localhost:27017/sokoban").catch(error => handleError(error));
 
 app.listen(PORT, () => {
   console.log(`Server running at http://${hostname}:${PORT}`);

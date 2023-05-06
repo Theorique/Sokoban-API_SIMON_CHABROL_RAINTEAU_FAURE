@@ -12,8 +12,11 @@ export const boardRoutes = (controller) => {
   });
 
   router.post("/add", (req, res) => {
-    console.log(req.query)
     controller.createBoard(req, res);
+  });
+
+  router.delete("/:boardId", (req, res) => {
+    controller.deleteBoard(req, res);
   });
 
   return router;
