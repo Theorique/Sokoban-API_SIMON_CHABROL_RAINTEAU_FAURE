@@ -9,12 +9,9 @@ export class RowsController {
       this.repository
         .getAll()
         .then((rows) => {
-          console.log('rows', rows);
-          //res.render("rows-list", { rows });
           res.json(rows);
         })
-        .catch((err) => {
-          console.log("showList error", err);
+        .catch(() => {
           res.sendStatus(500);
         });
     }

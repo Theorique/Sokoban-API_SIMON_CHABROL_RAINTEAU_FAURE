@@ -15,6 +15,10 @@ export const boardRoutes = (controller) => {
     controller.createBoard(req, res);
   });
 
+  router.put("/edit/:boardId", (req, res) => {
+    controller.editBoard(req, res);
+  });
+
   router.delete("/:boardId", (req, res) => {
     controller.deleteBoard(req, res);
   });

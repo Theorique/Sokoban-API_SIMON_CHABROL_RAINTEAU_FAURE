@@ -1,11 +1,11 @@
-import { Router } from "express";
+import {Router} from "express";
 
 export const rowsRoutes = (controller) => {
-  const router = Router();
+    const router = Router();
 
-  router.get("/", (req, res) => {
-    controller.showList(req, res);
-  });
+    router.get("/", (req, res) => {
+        controller.showList(req, res);
+    });
 
-  return router;
+    return router;
 }
