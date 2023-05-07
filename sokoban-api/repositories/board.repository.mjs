@@ -27,7 +27,7 @@ export class BoardRepository {
      * @param {String} boardId Id recherché
      * @returns
      */
-    async getByName(boardId) {
+    async getByBoardId(boardId) {
         let board = await Board.findOne({board_id: boardId}).exec();
         if (board == null)
             return null;

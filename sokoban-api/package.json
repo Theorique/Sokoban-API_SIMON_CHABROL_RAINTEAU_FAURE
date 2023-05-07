@@ -8,7 +8,8 @@
     "start": "nodemon server.mjs",
     "init-db": "docker run --name mongo-sokoban -p 27017:27017 -d mongo",
     "start-db": "docker start mongo-sokoban",
-    "stop-db": "docker stop mongo-sokoban"
+    "stop-db": "docker stop mongo-sokoban",
+    "delete-db": "docker rm mongo-sokoban"
   },
   "repository": {
     "type": "git",

@@ -17,14 +17,15 @@ export class BoardController {
     initBoard() {
         let boardId = "simple";
         let name = "A simple board";
-        let nbCols = 10;
-        let nbRows = 5;
+        let nbCols = 9;
+        let nbRows = 6;
         let rows = [
-            "##########",
-            "#x.x#....#",
-            "#...CC.P.#",
-            "#........#",
-            "##########"
+            "..####...",
+            "###..####",
+            "#.....C.#",
+            "#.#..#C.#",
+            "#.x.x#.P#",
+            "#########"
         ]
         this.repository.create(
             boardId,
@@ -78,8 +79,8 @@ export class BoardController {
      * @param {*} res
      */
     async getBoardByName(req, res) {
-        let name = req.params.name;
-        let result = await this.repository.getByName(name);
+        let boardId = req.params.name;
+        let result = await this.repository.getByBoardId(boardId);
         if (result != null) {
             res.send({code: 200, result});
         } else {
